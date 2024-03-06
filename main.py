@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 import time
 
 # Coordinates for Seoul
@@ -37,7 +37,7 @@ def is_night():
     sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0])
 
     # Current hour
-    time_now = datetime.now().hour
+    time_now = datetime.now(timezone.utc).hour
 
     # Checking if it's night, after Sunset, before Sunrise
     if sunrise >= time_now >= sunset:
